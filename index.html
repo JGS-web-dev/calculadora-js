@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <script type="text/javascript" src="index.js"></script> -->
+    <link rel="stylesheet" href="styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="calculadora">
+      <input type="text" id="display" disabled />
+
+        <div class="leftBox">
+            <button class="btn grow clear" onclick="clearDisplay()">AC</button>
+            <button class="btn" onclick="add('%')" disabled>%</button>
+            <button class="btn" onclick="add('9')">9</button>
+            <button class="btn" onclick="add('8')">8</button>
+            <button class="btn" onclick="add('7')">7</button>
+            <button class="btn" onclick="add('6')">6</button>
+            <button class="btn" onclick="add('5')">5</button>
+            <button class="btn" onclick="add('4')">4</button>
+            <button class="btn" onclick="add('3')">3</button>
+            <button class="btn" onclick="add('2')">2</button>
+            <button class="btn" onclick="add('1')">1</button>
+            <button class="btn grow" onclick="add('0')">0</button>
+            <button class="btn" onclick="add('.')">,</button>
+        </div>
+
+        <div class="rightBox">
+            <button class="btn" onclick="add('+')">+</button>
+            <button class="btn" onclick="add('-')">-</button>
+            <button class="btn" onclick="add('*')">x</button>
+            <button class="btn" onclick="add('/')">/</button>
+            <button class="btn equal" onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <script>
+      let display = document.getElementById("display");
+      const regex = /[+\-*/%]/
+
+      function add(value) {
+        if(regex.test(display.value) && regex.test(value)){
+          return
+        }
+          console.log(display);
+          display.value += value;
+      }
+
+      function clearDisplay() {
+        console.log("clearDisplay");
+        display.value = "";
+      }
+
+      function calculate() {
+        try {
+          let result = eval(display.value);
+          display.value = result;
+        } catch (error) {
+          console.error("Error:", error);
+          display.value = "Error";
+        }
+      }
+    </script>
+  </body>
+</html>
